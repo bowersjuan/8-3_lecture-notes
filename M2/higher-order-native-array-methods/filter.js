@@ -13,15 +13,15 @@
 
 let fans = [
   {
-    name: 'georgia',
+    name: "georgia",
     age: 12,
   },
   {
-    name: 'kyle',
+    name: "kyle",
     age: 32,
   },
   {
-    name: 'Demitrius',
+    name: "Demitrius",
     age: 21,
   },
 ];
@@ -47,7 +47,7 @@ let legalFans = fans
     return fan.name;
   });
 
-console.log(legalFans);
+console.log("legalFans:", legalFans);
 
 // legalFansNames = legalFans.map(function (fan) {
 //   return fan.name;
@@ -57,10 +57,10 @@ console.log(legalFans);
 
 // do not edit the comics object
 const comics = [
-  { title: 'Calvin & Hobbes', author: 'Bill Watterson', kind: 'print' },
-  { title: 'Zen Pencils', author: 'Gavin Aung Than', kind: 'web' },
-  { title: 'Nancy', author: 'Olivia James', kind: 'print' },
-  { title: 'False Knees', author: 'Joshua Barkman', kind: 'web' },
+  { title: "Calvin & Hobbes", author: "Bill Watterson", kind: "print" },
+  { title: "Zen Pencils", author: "Gavin Aung Than", kind: "web" },
+  { title: "Nancy", author: "Olivia James", kind: "print" },
+  { title: "False Knees", author: "Joshua Barkman", kind: "web" },
 ];
 
 /**
@@ -70,11 +70,14 @@ const comics = [
  */
 
 function isPrintComic(comic) {
-  return comic.kind === 'print';
+  return comic.kind === "print";
 }
 
 const isPrintComicResult = comics.filter(isPrintComic);
 console.log(isPrintComicResult);
+
+// This will log out an array of only comic objects that have a kind: "print" property.
+// [{ title: 'Calvin & Hobbes', author: 'Bill Watterson', kind: 'print' }, { title: 'Nancy', author: 'Olivia James', kind: 'print' }]
 
 /**
  * 2
@@ -82,9 +85,11 @@ console.log(isPrintComicResult);
  * What would happen if the callback function had the code below instead? Why?
  */
 
-function isPrintComic(comic) {
+function isPrintComic2(comic) {
   return comic.kind;
 }
+console.log(comics.filter(isPrintComic2));
+// In this case all the comic objects will be included in the output array since the expression comic.kind will always evalute to a string and this the boolean true
 
 /**
  * 3
@@ -92,6 +97,8 @@ function isPrintComic(comic) {
  * `type` is not a key on each comic object. Keeping that in mind, would happen if the callback function had the code below instead? Why?
  */
 
-function isPrintComic(comic) {
+function isPrintComic3(comic) {
   return comic.type;
 }
+console.log(comics.filter(isPrintComic3));
+// In this case nothing will log out because the callback function will process undefined for the unavailable type key
