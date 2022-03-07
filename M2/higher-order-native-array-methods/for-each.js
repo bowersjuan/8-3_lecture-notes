@@ -13,10 +13,10 @@
  */
 
 let soccerTeams = [
-  'Manchester United',
-  'Real Madrid',
-  'Boca Juniors',
-  'NYC FC',
+  "Manchester United",
+  "Real Madrid",
+  "Boca Juniors",
+  "NYC FC",
 ];
 
 function printTeamSupport(team) {
@@ -54,7 +54,9 @@ soccerTeams.forEach(function (team, index) {
  * 1
  *
  * The .forEach() method's callback function has up to three parameters. What are these parameters?
- *
+ * 1. The element of the array
+ * 2. The index of that element
+ * 3. The source array
  */
 
 /**
@@ -65,17 +67,21 @@ soccerTeams.forEach(function (team, index) {
 
 // do not edit the comics object
 const comics = [
-  { title: 'Calvin & Hobbes', author: 'Bill Watterson', kind: 'print' },
-  { title: 'Zen Pencils', author: 'Gavin Aung Than', kind: 'web' },
-  { title: 'Nancy', author: 'Olivia James', kind: 'print' },
-  { title: 'False Knees', author: 'Joshua Barkman', kind: 'web' },
+  { title: "Calvin & Hobbes", author: "Bill Watterson", kind: "print" },
+  { title: "Zen Pencils", author: "Gavin Aung Than", kind: "web" },
+  { title: "Nancy", author: "Olivia James", kind: "print" },
+  { title: "False Knees", author: "Joshua Barkman", kind: "web" },
 ];
 
 function printAllComics(comics) {
   // Write your code here.
-  for (let comic of comics) {
-    console.log(`${comic.title} by ${comic.author}`);
-  }
+  comics.forEach(function (comic, index, comics) {
+    console.log(
+      `(${index + 1} out of ${comics.length}) ${comic.title}" by ${
+        comic.author
+      }`
+    );
+  });
 }
 
 printAllComics(comics);
