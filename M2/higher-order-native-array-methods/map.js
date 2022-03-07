@@ -9,10 +9,10 @@
  */
 
 let soccerTeams = [
-  'Manchester United',
-  'Real Madrid',
-  'Boca Juniors',
-  'NYC FC',
+  "Manchester United",
+  "Real Madrid",
+  "Boca Juniors",
+  "NYC FC",
 ];
 
 function printTeamSupport(team) {
@@ -25,7 +25,7 @@ console.log(
   soccerTeams.map(function (team) {
     // canProduceSideEffects.push('yes'); // DO NOT DO THIS
     return { name: team, fanMessage: printTeamSupport(team) }; // Rely on the return value to transform arrays
-  }),
+  })
 );
 
 // console.log(teamObjs);
@@ -50,10 +50,10 @@ soccerTeams.forEach(function (team, index) {
 
 // do not edit the comics object
 const comics = [
-  { title: 'Calvin & Hobbes', author: 'Bill Watterson', kind: 'print' },
-  { title: 'Zen Pencils', author: 'Gavin Aung Than', kind: 'web' },
-  { title: 'Nancy', author: 'Olivia James', kind: 'print' },
-  { title: 'False Knees', author: 'Joshua Barkman', kind: 'web' },
+  { title: "Calvin & Hobbes", author: "Bill Watterson", kind: "print" },
+  { title: "Zen Pencils", author: "Gavin Aung Than", kind: "web" },
+  { title: "Nancy", author: "Olivia James", kind: "print" },
+  { title: "False Knees", author: "Joshua Barkman", kind: "web" },
 ];
 
 /**
@@ -64,7 +64,18 @@ const comics = [
  * Do not use the .map() method just yet. Instead, use an accumulator pattern.
  */
 function getAuthors(comics) {
-  // Write your code here!
+  // Using accumulator pattern
+  let authors = [];
+  for (let comic of comics) {
+    authors.push(comic.author);
+  }
+  return authors;
+
+  // Using .map
+  return comics.map(function (comic) {
+    return comic.author;
+  });
+  // .map combines the default accumulator and loop delcartion and the accumulator return line into one
 }
 
 const getAuthorsResult = getAuthors(comics);
@@ -85,8 +96,11 @@ console.log(getAuthorsResult); //> [ "Bill Watterson", "Gavin Aung Than", "Olivi
  */
 
 function getTitle(comic) {
-  comic.title;
+  /*return*/ comic.title;
 }
 
 const getTitleResult = comics.map(getTitle);
 console.log(getTitleResult);
+
+// The code will return [ undefined, undefined, undefined, undefined ]
+// This is because the getTitle function is not returning a value and this when used in the parameters of comics.map the array created by .map will only had undefined elements
