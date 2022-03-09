@@ -1,4 +1,55 @@
 /**
+ * Array.every() --> a higher order native array method
+ * returns true if EVERY evaluated expression in the anonymous function is True
+ * returns false if ANY evaluated expression iin the anonymous function is False
+ *
+ * Side Effects: ARE NOT recommended
+ *
+ * Return values: True or False
+ */
+
+const pens = [
+  {
+    name: 'g2',
+    style: 'ballpoint',
+  },
+  {
+    name: 'claire fontaine',
+    style: 'fountain',
+  },
+  {
+    name: 'pilot',
+    style: 'ballpoint',
+  },
+];
+
+function isEveryPenFountain(arr) {
+  let res = true;
+  for (let pen of arr) {
+    if (pen.style !== 'fountain') {
+      return false;
+    }
+  }
+
+  return res;
+}
+
+console.log('is every pen fountain:', isEveryPenFountain(pens));
+
+console.log(
+  'is every pen fountain (n.a.m):',
+  pens.every(function (pen) {
+    pen.style === 'fountain';
+  }),
+);
+
+console.log(
+  'is every pen fountain (n.a.m with arrow):',
+  pens.every((pen) => pen.style === 'fountain'),
+  // anonymous arrow function behaves the same as the above example with the anonymous function
+);
+
+/**
  * 1
  *
  * The .every() method expects at least one argument. What data type is this argument?
@@ -14,6 +65,7 @@
  * The .every() method's callback function has up to three parameters. What are these parameters?
  * // The arguments are the element, the index and the array
  */
+
 /**
  * 3
  *

@@ -1,4 +1,101 @@
 /**
+ * Array.sort() --> a higher order native array method
+ * Description:
+ * sorts the array ALPHABETICALLY (element values are converted to strings, and then compared according to their UTF-16 values)
+ * and then returns the mutated, sorted array
+ * it is NOT necessary to store the output of the sort method in a new variable
+ * because the method mutates the array directly --> it is destructive!!
+ *
+ * Side Effects: yes, there are side effects, namely mutating the original array
+ *
+ * Return values: yes, it returns the sorted array
+ *  sort() expects the callback to return either:
+ *   currentPen is <       nextPen is <     currentPen === nextPen
+ *   -1                    1                0
+ *   no swap               nextPen swaps    no swap
+ *
+ * Mutates the original array?: YES
+ */
+
+const pens = [
+  {
+    brand: 'g2',
+    style: 'ballpoint',
+  },
+  {
+    brand: 'crayola',
+    style: 'crayon',
+  },
+  {
+    brand: 'claire fontaine',
+    style: 'fountain',
+  },
+  {
+    brand: 'Pilot',
+    style: 'ballpoint',
+  },
+  {
+    brand: 'sharpie',
+    style: 'marker',
+  },
+  {
+    brand: 'crayola',
+    style: 'marker',
+  },
+];
+
+let penNames = pens.map((pen) => pen.brand);
+
+console.log(penNames.sort());
+
+// 1st loop: currentPen pens[0], nextPen pens[1]
+// 2nd loop: currentPen pens[1], nextPen pens[2]
+// 3rd loop: currentPen pens[2], nextPen pens[3]
+// 4th loop: currentPen pens[3], nextPen pens[4]
+// 5th loop: currentPen pens[4], nextPen undefined
+
+// TODO: fix this comparison so that the objects are sorted alphabetically according to their name vs UTF-16
+console.log(
+  pens.sort(function (currentPen, nextPen) {
+    const currentBrand = currentPen.brand.toLowerCase();
+    const nextBrand = nextPen.brand.toLowerCase();
+    if (currentBrand < nextBrand) {
+      return -1;
+    } else if (currentBrand > nextBrand) {
+      return 1;
+    }
+
+    return 0;
+  }),
+); // callback is optional
+
+let numbers = [34, 123, 123, 6, 1, 345, 22, 11111];
+
+console.log(numbers.sort()); // SORTED ALPHABETICALLY / LEXICOGRAPHICALLY
+
+// TODO: create a callback to sort numbers numerically
+
+console.log(
+  numbers.sort((current, next) => {
+    if (current < next) {
+      return -1;
+    } else if (current > next) {
+      return 1;
+    }
+
+    return 0;
+  }),
+);
+
+console.log(
+  'shortcut for sorting numbers!',
+  numbers.sort((a, b) => a - b),
+  // 1st loop: 34 - 123 (negative number) --> -1
+  // 2nd loop: 123 - 123 (0) --> 0
+  // 3rd loop: 123 - 6 (positive number) --> 1
+);
+
+/**
  * 1
  *
  * The .sort() method sorts elements in an array. Although the functionality is very different, in what ways is it similar to .every() and .some()?
