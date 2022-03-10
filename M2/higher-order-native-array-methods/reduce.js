@@ -235,16 +235,67 @@ console.log("flatten:", flatten(arrays)); // ["1", "2", "3", true, 4, 5, 6];
 /**
  * 8
  *
- * Given the array of potential voters above, return an object representing the results of the vote
+ * Given the array of potential voters above, return an object representing the results of the vote.
+ * 
+ * const voters = [
+    { name: 'Bob', age: 30, voted: true },
+    { name: 'Jake', age: 32, voted: true },
+  }
  *
  * Include how many of the potential voters were in the ages 18-25, how many from 26-35, how many from 36-55, and how many of each of those age ranges actually voted. The resulting object containing this data should have 6 properties. See the example output at the bottom.
  */
 
-function voterResults(arr) {}
+function voterResults(arr) {
+  // default return value
+  // {
+  //   numYoungVotes: 0, // call reduce + conditional voted true and && age 18-25
+  //   numYoungPeople: 0, // call reduce + conditional && age 18-25
+  //   numMidVotesPeople: 0, // call reduce + conditional voted true && age 26-35
+  //   numMidsPeople: 0, // call reduce + conditional age 18-25
+  //   numOldVotesPeople: 0, // call reduce + conditional voted true && age 36+
+  //   numOldsPeople: 0, // call reduce + conditional age 36+
+  // }
+  let numOldPeople = 0;
+  const res = {
+    numYoungVotes: arr.reduce((acc, el) => {
+      // call reduce + conditional voted true and && age 18-25
+      if (el.voted === true && el.age <= 25 && el.age >= 18) {
+        return acc + 1;
+      }
+      return acc + 0; // explicitly adding 0 is SOMETIMES not necessary, but visually remember this is happening in the background
+    }, 0),
+    numYoungPeople: arr.reduce((acc, el) => {
+      if (el.age <= 25 && el.age >= 18) {
+        return acc + 1;
+      }
+      return acc + 0;
+    }, 0), // expression that evaluate to a certain return value
+    numMidVotes: arr.reduce((acc, el) => {
+      // call reduce + conditional voted true && age 26-35
+      if (el.voted && el.age >= 26 && el.age <= 35) {
+        return acc + 1;
+      }
+      return acc + 0;
+    }, 0),
+    numMidPeople: arr.reduce((acc, el) => {
+      // call reduce + conditional age 26-35
+      if (el.age >= 26 && el.age <= 35) {
+        return acc + 1;
+      }
+      return acc + 0;
+    }, 0),
+    numOldVotes: 0, // call reduce + conditional voted true && age 36+
+    numOldPeople: 0, // call reduce + conditional age 36+
+  };
+
+  return res;
+  // your code here
+}
 
 console.log(voterResults(voters)); // Returned value shown below:
 /*
-{ numYoungVotes: 1,
+{ 
+  numYoungVotes: 1,
   numYoungPeople: 4,
   numMidVotesPeople: 3,
   numMidsPeople: 4,
