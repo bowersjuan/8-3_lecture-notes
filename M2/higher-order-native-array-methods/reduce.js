@@ -2,13 +2,13 @@
  * Array.reduce() --> a higher order native array method
  *
  * Description:
+ * Take an array, and using a callback function (anonymous or named), will appy an accumulation and return a single value, if there are no elements in the array, the default value will be the second (optional) argument passed to reduce.
  *
+ * Side Effects: NOT recommended
  *
- * Side Effects:
+ * Return values: a single value, the accumulation of an array
  *
- * Return values:
- *
- * Mutates the original array?:
+ * Mutates the original array?: NO
  */
 
 /**
@@ -17,12 +17,92 @@
  * Summing all the numbers in an array:
  */
 
-let arr1 = [1, 2, 3, 4];
-let sum1 = arr1.reduce((acc, el) => {
+// accumulator pattern
+
+// 1 result/return default value type
+// 2 loop
+// 3 accumulate!!!
+
+const numbers = [2, 3, 4, 5, 12, 1, 2, 54, 12, 32, 13];
+
+function sum(arr) {
+  // default type and value result
+  let res = 0;
+
+  // loop
+  for (let i = 0; i < arr.length; i++) {
+    // accumulate the sum
+    res += arr[i];
+  }
+
+  // return the result
+  return res;
+}
+
+console.log(sum(numbers));
+
+// accumulator pattern + higher order function
+
+// write a higher order function
+function getArrSum(arr, callback) {
+  let res = 0; // this is the accumulator
+  // handle the loop
+  for (let el of arr) {
+    res = callback(res, el); // the accumulator value is updated
+  }
+  // return the default value and type
+  return res;
+}
+
+// pass in a sum callback function
+function getSum(a, b) {
+  // accumulate
+  return a + b;
+}
+
+console.log(getArrSum(numbers, getSum));
+
+// accumulator pattern + reduce native array method
+let sum0 = numbers.reduce((accumulator, currentValue) => {
+  // step 2 of accumulator pattern abstracted by native array method definition
+  // step 3: accumulation operation (this is what we handle as devs)
+  return accumulator + currentValue; // in the background the accumulator value is updated to equal this result of this expression
+}, 0); // step 1 of accumulator pattern (default value and type)
+
+console.log(sum0);
+
+let numbers2 = [1, 2, 3, 4];
+
+let sum1 = numbers2.reduce((acc, el) => {
+  // acc stands for accumulator, el stands for current element
   return acc + el;
 });
 
 console.log(sum1); // => 10
+
+// validate our element values are correct
+let numbers3 = ['string'];
+
+let sumNumbers = numbers3.reduce((acc, el) => {
+  if (typeof el !== 'number') {
+    return 0;
+  }
+  return acc + el;
+}, 0);
+
+console.log(sumNumbers);
+
+// handling an empty array
+let numbers4 = [];
+
+let sumNumbers4 = numbers4.reduce((acc, el) => {
+  if (typeof el !== 'number') {
+    return 0;
+  }
+  return acc + el;
+}, 0);
+
+console.log(sumNumbers4);
 
 /**
  * 2
@@ -43,7 +123,7 @@ let sum2 = arr2.reduce((acc, el) => {
   return acc + el;
 }, 5);
 
-console.log(sum2); // => 15
+// console.log(sum2); // => 15
 
 /**
  * 3
@@ -57,7 +137,7 @@ const adder = (num1, num2) => {
 
 let sum3 = arr2.reduce(adder, 5);
 
-console.log(sum3); // => 15
+// console.log(sum3); // => 15
 
 /**
  * 4
@@ -69,7 +149,7 @@ function stringConcat(arr) {
   // your code here
 }
 
-console.log(stringConcat([1, 2, 3])); // "123"
+// console.log(stringConcat([1, 2, 3])); // "123"
 /**
  * 5
  *
@@ -96,7 +176,7 @@ const voters = [
   { name: 'Jeff', age: 30, voted: true },
   { name: 'Zack', age: 19, voted: false },
 ];
-console.log(totalVotes(voters)); // 7
+// console.log(totalVotes(voters)); // 7
 
 /**
  * 6
@@ -116,7 +196,7 @@ const wishlist = [
   { title: 'A second Tesla Model S', price: 90000 },
 ];
 
-console.log(shoppingSpree(wishlist)); // 227005
+// console.log(shoppingSpree(wishlist)); // 227005
 /**
  * 7
  *
@@ -131,7 +211,7 @@ function flatten(arr) {
 
 const arrays = [['1', '2', '3'], [true], [4, 5, 6]];
 
-console.log(flatten(arrays)); // ["1", "2", "3", true, 4, 5, 6];
+// console.log(flatten(arrays)); // ["1", "2", "3", true, 4, 5, 6];
 
 /**
  * 8
@@ -145,7 +225,7 @@ function voterResults(arr) {
   // your code here
 }
 
-console.log(voterResults(voters)); // Returned value shown below:
+// console.log(voterResults(voters)); // Returned value shown below:
 /*
 { numYoungVotes: 1,
   numYoungPeople: 4,
