@@ -1,4 +1,4 @@
-const weatherData = require("./weather-data.js");
+const weatherData = require('./weather-data.js');
 
 /**
  * Use built in higher order array methods to answer questions about the seven day weather forecast
@@ -82,4 +82,21 @@ function logSunnyDayLows(forecast) {}
  *
  * findDayByTemp(weatherData, 51) // => "3/11/2022"
  */
-function findDayByTemp(forecast, temperature) {}
+function findDayByTemp(forecast, temperature) {
+  // find the first weather data object with the given temperature
+  // GREAT use case for the array.find()!!
+  const firstWeatherObj = forecast.find((element) => {
+    return temperature >= element.lowTemp && temperature <= element.highTemp;
+  }); // temperature is between high and low
+  // get the elements date
+  const firstWeatherDate = firstWeatherObj.date;
+  // convert it to a Date object
+  const firstWeatherDay = new Date(firstWeatherDate);
+  const firstWeatherDayIndex = firstWeatherDay.getDay();
+  // using the Date object, calculate the day of the week
+  const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  return weekDays[firstWeatherDayIndex];
+}
+
+console.log(findDayByTemp(weatherData, 34));
