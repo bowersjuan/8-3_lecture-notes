@@ -19,28 +19,28 @@
 
 const pens = [
   {
-    brand: 'g2',
-    style: 'ballpoint',
+    brand: "g2",
+    style: "ballpoint",
   },
   {
-    brand: 'crayola',
-    style: 'crayon',
+    brand: "crayola",
+    style: "crayon",
   },
   {
-    brand: 'claire fontaine',
-    style: 'fountain',
+    brand: "claire fontaine",
+    style: "fountain",
   },
   {
-    brand: 'Pilot',
-    style: 'ballpoint',
+    brand: "Pilot",
+    style: "ballpoint",
   },
   {
-    brand: 'sharpie',
-    style: 'marker',
+    brand: "sharpie",
+    style: "marker",
   },
   {
-    brand: 'crayola',
-    style: 'marker',
+    brand: "crayola",
+    style: "marker",
   },
 ];
 
@@ -66,7 +66,7 @@ console.log(
     }
 
     return 0;
-  }),
+  })
 ); // callback is optional
 
 let numbers = [34, 123, 123, 6, 1, 345, 22, 11111];
@@ -84,12 +84,12 @@ console.log(
     }
 
     return 0;
-  }),
+  })
 );
 
 console.log(
-  'shortcut for sorting numbers!',
-  numbers.sort((a, b) => a - b),
+  "shortcut for sorting numbers!",
+  numbers.sort((a, b) => a - b)
   // 1st loop: 34 - 123 (negative number) --> -1
   // 2nd loop: 123 - 123 (0) --> 0
   // 3rd loop: 123 - 6 (positive number) --> 1
@@ -100,6 +100,7 @@ console.log(
  *
  * The .sort() method sorts elements in an array. Although the functionality is very different, in what ways is it similar to .every() and .some()?
  */
+// .sort is similat to .every and .some in that it uses boolean-type functionality in order to calculate its return. The difference is that the boolean-type logic for .sort has to have three possible options as opposed to the traditional boolean lgiv of true/false
 
 /**
  * 2
@@ -126,24 +127,28 @@ console.log(res2); //> [ 0, 1, 11, 2, 22 ]
  *
  * In general, you should not use the .sort() method without a callback function. However, can you describe why the .sort() method is organizing the numbers above in this way?
  */
+// The .sort method is organizing the numbers in previous code that way because it uses UTF-16 values of the elements it is sorting in order to calculate the order. Although the number 2 comes before the number 11 in the number line, the UTF-16 value for 11 actually comes before the UTF-16 value for 2 because 1 is the first number and it comes before 2 on the UTF-16 line
 
 /**
  * 5
  *
  * The .sort() method expects one argument. What data type is this argument?
  */
+// The sort mathod expects a callback funtion that will help establish the logic for ordering the elements
 
 /**
  * 6
  *
  * The .sort() method's callback function has up to two parameters. What are these parameters?
  */
+// The parameters for the callback function are the current element and the next element compared for order
 
 /**
  * 7
  *
  * The .sort() method's callback function expects a number to be returned. The number must either be a positive number, a negative number, or 0. What is the effect of each of these values?
  */
+// If a negative number is returned
 
 /**
  * 8
