@@ -18,11 +18,7 @@ try {
   console.log("guest is valid", guestIsValid({}));
   console.log("guest is valid", guestIsValid({}));
 } catch (err) {
-<<<<<<< HEAD
-  console.log(" WE CAUGHT A WILD ERROR!", err);
-=======
   console.log("WE CAUGHT A WILD ERROR!", err);
->>>>>>> 764c01c302abe70b7ec0d707c0e7b1714229afe1
 }
 
 /** 2. How is a try/catch block similar to an if/else statement? */
