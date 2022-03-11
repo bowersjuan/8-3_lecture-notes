@@ -11,7 +11,7 @@ let nums = [1, 2, 4, 54, 1, 23];
 console.log(
   nums.map(function (a) {
     return a + 100;
-  }),
+  })
 );
 
 // Arrow Function Break Down
@@ -30,9 +30,9 @@ console.log(
 // filter review
 // write a function that will return only people objects whose age is "the right" age
 const people = [
-  { name: 'Capn', age: 8 },
-  { name: 'Ben', age: 28 },
-  { name: 'Jessica', age: 59 },
+  { name: "Capn", age: 8 },
+  { name: "Ben", age: 28 },
+  { name: "Jessica", age: 59 },
 ];
 
 const peopleOfAge = (arr, rightAge) => {
@@ -59,15 +59,15 @@ console.log(firstPersonOfAge(people, 13));
 // sort objects in an array by age
 const cheeses = [
   {
-    name: 'humboldt fog',
+    name: "humboldt fog",
     age: 1,
   },
   {
-    name: 'brie',
+    name: "brie",
     age: 0.5,
   },
   {
-    name: 'lindberger',
+    name: "lindberger",
     age: 2,
   },
 ];
