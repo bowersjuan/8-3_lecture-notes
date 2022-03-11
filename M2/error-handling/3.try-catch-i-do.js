@@ -18,9 +18,18 @@ try {
   console.log("guest is valid", guestIsValid({}));
   console.log("guest is valid", guestIsValid({}));
 } catch (err) {
+<<<<<<< HEAD
   console.log(" WE CAUGHT A WILD ERROR!", err);
+=======
+  console.log("WE CAUGHT A WILD ERROR!", err);
+>>>>>>> 764c01c302abe70b7ec0d707c0e7b1714229afe1
 }
 
 /** 2. How is a try/catch block similar to an if/else statement? */
 
-/** 3. The catch block includes access to a variable, error, when it is used. What is this variable used for? */
+// -> It's a control flow construct that helps us implement a specific kind of conditional logic
+// -> DO THE STUFF IN THE TRY. IF an error occurs, execute the catch
+
+/** 3. The catch block includes access to a variable, err, when it is used. What is this variable used for? */
+
+// -> it will be an error message (or sometimes an error object) that represents the problem that occured.
