@@ -2,8 +2,12 @@
 // Select a driver to share their screen.
 
 function guestIsValid(guest) {
-  if (!guest.name || !guest.email) {
-    return "Guest is missing fields.";
+  if (!guest.name) {
+    throw "The following fields are required: name";
+  } else if (!guest.email) {
+    throw "The following fields are required: email";
+  } else if (!guest.name && !guest.email) {
+    throw "The following fields are required: email, name";
   }
 
   return true;
