@@ -21,7 +21,7 @@ function percentComplete(todos) {
   }).length;
   return Math.round((completedTodos / allTodos) * 100);
 }
-console.log(percentComplete(exampleTodos));
+console.log("Percent Complete:", percentComplete(exampleTodos));
 
 /**
  * isTodoDueOn
@@ -46,7 +46,7 @@ function isTodoDueOn(todos, date = "1/1/1970") {
     );
   });
 }
-console.log(isTodoDueOn(exampleTodos));
+console.log("Is Todo Due On:", isTodoDueOn(exampleTodos));
 
 /**
  * allRelatedItemsComplete
@@ -62,8 +62,31 @@ console.log(isTodoDueOn(exampleTodos));
  *   => ex: allRelatedItemsComplete(exampleTodos, "ehw49g0") // => false
  *   => ex: allRelatedItemsComplete(exampleTodos, "zbacasq") // ERROR
  */
-function allRelatedItemsComplete() {}
+function allRelatedItemsComplete(todos, id) {
+  if (
+    !todos.find((todo) => {
+      return todo["id"] === id;
+    })
+  ) {
+    throw `ERROR: ${id} doesn't match any element of the todo list.`;
+  }
 
+  let relatedTodos = todos.find((todo) => {
+    return todo["id"] === id;
+  }).relatedTo;
+
+  return todos
+    .filter((todo) => {
+      return relatedTodos.includes(todo["id"]);
+    })
+    .every((todo) => {
+      return todo.status.complete;
+    });
+}
+console.log(
+  "All Related Items Complete:",
+  allRelatedItemsComplete(exampleTodos, "zbacasq")
+);
 /**
  * getStatuses
  *
@@ -83,7 +106,7 @@ function getStatuses(todos) {
     return `${todo.description}: ${completion}`;
   });
 }
-console.log(getStatuses(exampleTodos));
+console.log("Get Statuses:", getStatuses(exampleTodos));
 
 /**
  * getIncompleteDescriptions
@@ -104,7 +127,10 @@ function getIncompleteDescriptions(todos) {
       return todo.description;
     });
 }
-console.log(getIncompleteDescriptions(exampleTodos));
+console.log(
+  "Get Incomplete Descriptions:",
+  getIncompleteDescriptions(exampleTodos)
+);
 
 // Now it's your turn! Don't stop here:
 // come up with additional practice problems based on the todo list that will help you practice higher order array methods, error handling, and ES6 syntax
