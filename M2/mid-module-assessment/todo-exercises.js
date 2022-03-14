@@ -10,7 +10,18 @@ const exampleTodos = require("./todo-data.js");
  * @param {Object[]} todos
  * @returns {Number || Error} - a number between 0 and 100 indicating the percent of tasks that have been completed
  */
-function percentComplete() {}
+function percentComplete(todos) {
+  if (!todos.length) {
+    throw "Todos array cannot be empty";
+  }
+
+  const allTodos = todos.length;
+  const completedTodos = todos.filter((todo) => {
+    return todo.status.complete;
+  }).length;
+  return Math.round((completedTodos / allTodos) * 100);
+}
+console.log(percentComplete(exampleTodos));
 
 /**
  * isTodoDueOn
@@ -25,7 +36,17 @@ function percentComplete() {}
  *  => ex: isTodoDueOn(exampleTodos, "3/11/2022") // => true
  *  => ex: isTodoDueOn(exampleTodos) // => false (since no todo in exampleToDos is due on 1/1/1970)
  */
-function isTodoDueOn() {}
+function isTodoDueOn(todos, date = "1/1/1970") {
+  return todos.some((todo) => {
+    return (
+      new Date(date).toString() ===
+      new Date(
+        todo.status.due.split("T").shift().replaceAll("-", "/")
+      ).toString()
+    );
+  });
+}
+console.log(isTodoDueOn(exampleTodos));
 
 /**
  * allRelatedItemsComplete
@@ -53,7 +74,16 @@ function allRelatedItemsComplete() {}
  *
  *   => example: getStatuses(exampleTodos) // => ["Chop vegetables: COMPLETE", "Make dinner: INCOMPLETE", ..., "Fold clothes: COMPLETE"]
  */
-function getStatuses() {}
+function getStatuses(todos) {
+  return todos.map((todo) => {
+    let completion;
+    todo.status.complete
+      ? (completion = "COMPLETE")
+      : (completion = "INCOMPLETE");
+    return `${todo.description}: ${completion}`;
+  });
+}
+console.log(getStatuses(exampleTodos));
 
 /**
  * getIncompleteDescriptions
@@ -65,7 +95,16 @@ function getStatuses() {}
  *
  *   => ex: getIncompleteDescriptions(exampleTodos) // => ["Make dinner", "Clean bedroom", "Sweep floor"]
  */
-function getIncompleteDescriptions() {}
+function getIncompleteDescriptions(todos) {
+  return todos
+    .filter((todo) => {
+      return !todo.status.complete;
+    })
+    .map((todo) => {
+      return todo.description;
+    });
+}
+console.log(getIncompleteDescriptions(exampleTodos));
 
 // Now it's your turn! Don't stop here:
 // come up with additional practice problems based on the todo list that will help you practice higher order array methods, error handling, and ES6 syntax
